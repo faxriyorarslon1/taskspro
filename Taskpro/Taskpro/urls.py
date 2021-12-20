@@ -17,9 +17,14 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from main.views import main_page
+from django.urls.conf import include
+from register.views import register_view
+from main.views import main_page, gallery_page
+from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',main_page)
+    path('', main_page, name='main_page'),
+    path('gallery/', gallery_page, name='gallery_page'),
+    path('register/', register_view, name='register_page'),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
